@@ -1,6 +1,6 @@
     document.addEventListener("DOMContentLoaded", async function () {
         try {
-            const res = await fetch("http://127.0.0.1:8000/users/Top10/");
+            const res = await fetch("https://ayyubxon.pythonanywhere.com/users/Top10/");
             const users = await res.json();
             const accordion = document.getElementById("accordionExample");
 
@@ -33,7 +33,6 @@
                          data-bs-parent="#accordionExample">
                         <div class="accordion-body">
                             <p class="mb-1"><strong>Rank:</strong> ${user.rank}</p>
-                            <p class="mb-1"><strong>Email:</strong> ${user.email}</p>
                             <p class="mb-1 text-warning"><strong>Score:</strong> <i class="fas fa-gem"></i> ${user.average_score}</p>
                         </div>
                     </div>

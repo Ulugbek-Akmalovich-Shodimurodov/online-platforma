@@ -166,6 +166,9 @@
               <button id="action-btn" type="button" class="btn btn-success py-md-3 px-md-5">
                 Testni boshlash
               </button>
+              <button id="finish-btn" type="button" class="btn btn-success py-md-3 px-md-5" style="display: none;">
+                Testni yakunlash
+              </button>
               <span id="result-display" class="ms-3 fw-bold"></span>
             </div>
           </form>
@@ -186,14 +189,14 @@
 
         // Agar 'id' mavjud bo'lsa, amaliyotni olish
         if (practiceId) {
-            fetch(`http://127.0.0.1:8000/api/practices/${practiceId}/`) // Amaliyotni olish
+            fetch(`https://ayyubxon.pythonanywhere.com/api/practices/${practiceId}/`) // Amaliyotni olish
                 .then(response => response.json())
                 .then(data => {
                     // HTML qismlarini to'ldirish
                     document.getElementById('course-title').textContent = data.name;
                     document.getElementById('course-description').innerHTML = data.description;
                     document.getElementById('course-video-container').innerHTML = data.link;
-                    document.getElementById('download_btn').href = `http://127.0.0.1:8000${data.file}`;
+                    document.getElementById('download_btn').href = `https://ayyubxon.pythonanywhere.com${data.file}`;
                 })
                 .catch(error => console.error("Xatolik:", error));
         } else {
@@ -228,143 +231,186 @@
   <script src="js/main.js"></script>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const urlParams = new URLSearchParams(window.location.search);
-    const practiceId = urlParams.get('id'); // Amaliyot ID olish
+let isTestStarted = false;
+let timeLeft = 0;
+let timer = null;
+const urlParams = new URLSearchParams(window.location.search);
+const practiceId = urlParams.get('id'); 
 
-    let timer;
-    let timeLeft = 0;  // Test uchun vaqt (API'dan keladi)
-    let isTestStarted = false;
 
-    // Testni boshlash yoki yakunlash
-    document.getElementById('action-btn').addEventListener('click', function() {
-        if (!isTestStarted) {
-            // Testni boshlashdan oldin amaliyotni olish
-            fetch(`http://127.0.0.1:8000/api/practices/${practiceId}/`)
-                .then(response => response.json())
-                .then(data => {
-                    // Test ID ni olish
-                    const testId = data.test.id;
-                    // Backenddan test savollarini olish
-                    fetch(`http://127.0.0.1:8000/api/tests/${testId}/`)
-                        .then(response => response.json())
-                        .then(testData => {
-                            if (testData && testData.questions) {
-                                renderQuestions(testData.questions); // Savollarni render qilish
-                                timeLeft = testData.duration_minutes * 60; // Vaqtni API orqali olish (daqiqa)
-                                startTimer(); // Vaqtni boshlash
-                                isTestStarted = true;
-                                document.getElementById('action-btn').textContent = "Testni yakunlash";
-                            } else {
-                                alert("Test savollari topilmadi.");
-                            }
-                        })
-                        .catch(error => {
-                            console.error("Testni olishda xatolik:", error);
-                            alert("Testni olishda xatolik yuz berdi.");
-                        });
-                })
-                .catch(error => {
-                    console.error("Amaliyotni olishda xatolik:", error);
-                    alert("Amaliyotni olishda xatolik yuz berdi.");
-                });
-        } else {
-            submitTest(); // Testni yuborish
-        }
+
+// Testni boshlash
+document.getElementById('action-btn').addEventListener('click', function () {
+  if (!isTestStarted) {
+    fetch(`https://ayyubxon.pythonanywhere.com/api/practices/${practiceId}/`)
+      .then(response => response.json())
+      .then(data => {
+        const testId = data.test.id;
+        fetch(`https://ayyubxon.pythonanywhere.com/api/tests/${testId}/`)
+          .then(response => response.json())
+          .then(testData => {
+            if (testData && testData.questions) {
+              renderQuestions(testData.questions);
+              timeLeft = testData.duration_minutes * 60;
+              startTimer();
+              isTestStarted = true;
+
+              // Tugmalar holatini boshqarish
+              document.getElementById('action-btn').style.display = 'none';
+              document.getElementById('finish-btn').style.display = 'inline-block';
+            } else {
+              alert("Test savollari topilmadi.");
+            }
+          })
+          .catch(error => {
+            console.error("Testni olishda xatolik:", error);
+            alert("Testni olishda xatolik yuz berdi.");
+          });
+      })
+      .catch(error => {
+        console.error("Amaliyotni olishda xatolik:", error);
+        alert("Amaliyotni olishda xatolik yuz berdi.");
+      });
+  }
+});
+
+// Testni yakunlash tugmasi
+document.getElementById('finish-btn').addEventListener('click', function () {
+  submitTest();
+});
+
+// Savollarni sahifaga chiqarish
+function renderQuestions(questions) {
+  const container = document.getElementById('questions-container');
+  container.innerHTML = '';
+
+  questions.forEach((q, idx) => {
+    const block = document.createElement('div');
+    block.className = 'mb-4';
+
+    const title = document.createElement('h5');
+    title.textContent = `${idx + 1}. ${q.question}`;
+    block.appendChild(title);
+
+    q.answer.forEach(opt => {
+      const fc = document.createElement('div');
+      fc.className = 'form-check mb-2';
+
+      const rd = document.createElement('input');
+      rd.className = 'form-check-input';
+      rd.type = 'radio';
+      rd.name = `question_${q.id}`;
+      rd.id = `opt_${opt.id}`;
+      rd.value = opt.id;
+
+      const lbl = document.createElement('label');
+      lbl.className = 'form-check-label';
+      lbl.htmlFor = rd.id;
+      lbl.textContent = opt.answer;
+
+      fc.appendChild(rd);
+      fc.appendChild(lbl);
+      block.appendChild(fc);
     });
 
-    // Test savollarini render qilish
-    function renderQuestions(questions) {
-        const container = document.getElementById('questions-container');
-        container.innerHTML = '';
+    container.appendChild(block);
+  });
+}
 
-        questions.forEach((q, idx) => {
-            const opts = q.answer; // Javob variantlari
-            const block = document.createElement('div');
-            block.className = 'mb-4';
-
-            const title = document.createElement('h5');
-            title.textContent = `${idx + 1}. ${q.question}`; // Savolni qo'shish
-            block.appendChild(title);
-
-            opts.forEach(opt => {
-                const fc = document.createElement('div');
-                fc.className = 'form-check mb-2';
-
-                const rd = document.createElement('input');
-                rd.className = 'form-check-input';
-                rd.type = 'radio';
-                rd.name = `question_${q.id}`;
-                rd.id = `opt_${opt.id}`;
-                rd.value = opt.id;
-
-                const lbl = document.createElement('label');
-                lbl.className = 'form-check-label';
-                lbl.htmlFor = rd.id;
-                lbl.textContent = opt.answer;
-
-                fc.appendChild(rd);
-                fc.appendChild(lbl);
-                block.appendChild(fc);
-            });
-
-            container.appendChild(block); // Savol va javoblarni konteynerga qo'shish
-        });
+// Vaqtni boshlash
+function startTimer() {
+  timer = setInterval(function () {
+    if (timeLeft <= 0) {
+      clearInterval(timer);
+      submitTest();
+    } else {
+      document.getElementById('result-display').textContent = `Qoldiq vaqt: ${Math.floor(timeLeft / 60)}:${String(timeLeft % 60).padStart(2, '0')}`;
+      timeLeft--;
     }
+  }, 1000);
+}
 
-    // Testni yakunlash uchun vaqtni boshqarish
-    function startTimer() {
-        timer = setInterval(function() {
-            if (timeLeft <= 0) {
-                clearInterval(timer); // Vaqt tugaganda testni yakunlash
-                submitTest();
-            } else {
-                document.getElementById('result-display').textContent = `Qoldiq vaqt: ${Math.floor(timeLeft / 60)}:${timeLeft % 60}`;
-                timeLeft--;
-            }
-        }, 1000);
-    }
+// Test natijalarini backendga yuborish
+function submitTest() {
+  const answers = Array.from(document.querySelectorAll('input[type="radio"]:checked')).map(input => {
+    const questionId = input.name.split('_')[1];
+    const answerId = input.value;
+    return { question_id: questionId, answer_id: answerId };
+  });
 
-    // Test natijalarini yuborish
-    function submitTest() {
-        const answers = Array.from(document.querySelectorAll('input[type="radio"]:checked')).map(input => {
-            const questionId = input.name.split('_')[1];
-            const answerId = input.value;
-            return { question: questionId, answer: answerId };
-        });
+  const accessToken = localStorage.getItem('access_token');
 
-        // Foydalanuvchi tokenini olish
-        const userToken = localStorage.getItem('userToken'); // Yoki cookie orqali olish
+  fetch(`https://ayyubxon.pythonanywhere.com/api/submit-test/${practiceId}/`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + accessToken // <-- TOKENNI SHU YERGA QO‘YASIZ
+    },
+    body: JSON.stringify({
+      practice_id: practiceId,
+      answers: answers
+    })
+  })
+    .then(response => response.json())
+    .then(data => {
+      displayResult(data);
+      clearInterval(timer);
+      document.getElementById('finish-btn').style.display = 'none';
+    })
+    .catch(error => {
+      console.error("Testni yuborishda xatolik:", error);
+      alert("Natijalarni yuborishda xatolik yuz berdi.");
+    });
+}
 
-        // CSRF tokenini olish
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+// Natijani chiqarish (to‘liq o‘zgartirilgan)
+// Natijani chiqarish (test ID'siz)
+function displayResult(data) {
+  console.log(data); // butun natijani ko'rib chiqish uchun
 
-        fetch(`http://127.0.0.1:8000/api/submit-test/${practiceId}/`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Token ${userToken}`,  // Foydalanuvchining tokeni
-                'X-CSRFToken': csrfToken  // CSRF tokenini yuborish
-            },
-            body: JSON.stringify({
-                practice_id: practiceId,  // Amaliyot ID
-                answers: answers          // Javoblar
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            displayResult(data); // Natijani ko'rsatish
-        })
-        .catch(error => console.error("Test natijasini yuborishda xatolik:", error));
-    }
+  // 1. Test formasi bo‘lsa - uni o‘chirib yuborish
+  const testContainer = document.getElementById('questions-container');
+  if (testContainer) {
+    testContainer.remove();
+  }
 
-    // Test natijasini ko'rsatish
-    function displayResult(data) {
-        const resultDisplay = document.getElementById('result-display');
-        resultDisplay.className = 'ms-3 fw-bold ' + (data.score < 60 ? 'text-danger' : 'text-success');
-        resultDisplay.textContent = `Sizning natijangiz: ${data.score}%`;
-    }
-});
+  // 2. Natijani ko‘rsatish
+  const resultDisplay = document.getElementById('result-display');
+  resultDisplay.innerHTML = ''; // eski natijalarni tozalash
+
+  if (data.success) {
+    // Umumiy foiz natijasi
+    const percentageText = document.createElement('p');
+    percentageText.className = 'fw-bold fs-5 ' + (data.percentage < 60 ? 'text-danger' : 'text-success');
+    percentageText.textContent = `Sizning yakuniy natijangiz: ${data.percentage}%`;
+    resultDisplay.appendChild(percentageText);
+
+    // Har bir savol uchun tafsilotlar (ID'siz)
+    const detailList = document.createElement('ul');
+    detailList.className = 'mt-3 list-group';
+
+    data.details.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.className = 'list-group-item';
+
+      li.innerHTML = `
+        <div><strong>${index + 1}-Savol</strong></div>
+        <div>Javobingiz: <strong>${item.your_answer}</strong></div>
+        <div>Natija: ${item.is_correct 
+          ? '<span class="text-success">To‘g‘ri</span>' 
+          : `<span class="text-danger">Noto‘g‘ri</span></strong>`}
+        </div>
+      `;
+
+      detailList.appendChild(li);
+    });
+
+    resultDisplay.appendChild(detailList);
+  } else {
+    resultDisplay.textContent = 'Natija topilmadi yoki xatolik yuz berdi.';
+  }
+}
+
 </script>
 </body>
 </html>

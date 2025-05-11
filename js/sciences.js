@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    fetch("http://127.0.0.1:8000/api/sciences/")  // Barcha fanlar
+    fetch("https://ayyubxon.pythonanywhere.com/api/sciences/")  // Barcha fanlar
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById("science-container");
@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 col.innerHTML = `
                     <div class="content shadow p-3 mb-2 wow fadeInUp" data-wow-delay="0.3s">
-                        <img src="http://127.0.0.1:8000${science.image}" class="img-fluid" alt="categories">
+                        <img src="https://ayyubxon.pythonanywhere.com${science.image}" class="img-fluid" alt="categories">
                         <h5 class="my-2">
                             <a href="single.html?id=${science.id}" class="text-center">${science.name}</a>
                         </h5>
@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Agar 'id' bo'lsa, so'rovni yuborish
     if (scienceId) {
-        fetch(`http://127.0.0.1:8000/api/sciences/${scienceId}/`) // Fanga tegishli amaliyotlarni olish
+        fetch(`https://ayyubxon.pythonanywhere.com/api/sciences/${scienceId}/`) // Fanga tegishli amaliyotlarni olish
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById("science-container");
@@ -44,13 +44,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 fan.innerHTML = `
                     <h2>${data.name}</h2>
-                    <img src="http://127.0.0.1:8000${data.image}" class="img-fluid" alt="Fan rasmi">
+                    <img src="https://ayyubxon.pythonanywhere.com${data.image}" class="img-fluid" alt="Fan rasmi">
                     <p>${data.description}</p>
                     <div class="video-container">
                         ${data.link}  <!-- YouTube video o'ynatish linki -->
                     </div>
                     <div class="file-container">
-                        <a href="http://127.0.0.1:8000${data.file}" target="_blank">Amaliyot faylini ko'rish</a>
+                        <a href="https://ayyubxon.pythonanywhere.com${data.file}" target="_blank">Amaliyot faylini ko'rish</a>
                     </div>
                 `;
 

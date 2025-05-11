@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Agar 'id' bo'lsa, faqat o'sha fan bo'yicha amaliyotlarni olish
     if (scienceId) {
-        fetch(`http://127.0.0.1:8000/api/sciences/${scienceId}/`) // Fanga tegishli amaliyotlarni olish
+        fetch(`https://ayyubxon.pythonanywhere.com/api/sciences/${scienceId}/`) // Fanga tegishli amaliyotlarni olish
             .then(response => response.json())
             .then(data => {
                 const coursesContainer = document.getElementById("courses-container");
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         courseElement.innerHTML = `
                             <div class="course-item shadow">
                                 <div class="position-relative overflow-hidden text-light image">
-                                    <img class="img-fluid" src="http://127.0.0.1:8000${course.image}" alt="${course.name}">
+                                    <img class="img-fluid" src="https://ayyubxon.pythonanywhere.com${course.image}" alt="${course.name}">
                                 </div>
                                 <div class="p-2 pb-0">
                                     <h5 class="mb-1"><a href="single.html?id=${course.id}" class="text-dark">${course.name}</a></h5>
