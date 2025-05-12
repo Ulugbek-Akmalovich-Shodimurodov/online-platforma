@@ -174,11 +174,9 @@
         }
     </style>
 <style>
-  body {
-    padding: 20px;
-  }
 
   .code-runner {
+    margin: 20px;
     display: flex;
     gap: 20px;
     font-family: monospace;
@@ -235,8 +233,8 @@
     }
   }
 </style>
-
-  <h2>Code Runner</h2>
+  <div class="container">
+    <h2>Kod komplyator</h2>
   <div class="code-runner">
     <div class="code-editor">
       <select id="language" onchange="updateVersion()">
@@ -246,18 +244,17 @@
       </select>
       <select id="version"></select>
 
-      <textarea id="codeInput" rows="15">
-print("hello")
-      </textarea>
-      <button onclick="compileCode()">Run Code</button>
+      <textarea id="codeInput" rows="10">print("hello")</textarea>
+      <button onclick="compileCode()">Ishga tushirish</button>
     </div>
     <div class="output-area">
-      <h3>Input</h3>
-      <textarea id="inputData" rows="5">4</textarea>
+      <h3>Kirish</h3>
+      <textarea id="inputData" rows="5"></textarea>
 
-      <h3>Output</h3>
+      <h3>Natija</h3>
       <textarea id="outputArea" rows="5" readonly></textarea>
     </div>
+  </div>
   </div>
 
   <script>

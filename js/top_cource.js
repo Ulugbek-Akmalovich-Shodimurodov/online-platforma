@@ -1,23 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // 1. access_token mavjudligini tekshiramiz
-    const accessToken = localStorage.getItem("access_token");
-
-    if (!accessToken) {
-        alert("Fanga a'zo bo'lishdan avval tizimga kiring.");
-        window.location.href = "login.html";
-        return;
-    }
-
-    // 2. URL'dan 'id' parametrini olish
-    const urlParams = new URLSearchParams(window.location.search);
-    const scienceId = urlParams.get('id');
-
-    // 3. Agar 'id' bo‘lsa — o‘sha fan bo‘yicha amaliyotlarni olib kelish
-    if (scienceId) {
-        fetch(`https://ayyubxon.pythonanywhere.com/api/sciences/${scienceId}/`)
+        fetch(`https://ayyubxon.pythonanywhere.com/api/all-practices/`)
             .then(response => response.json())
             .then(data => {
-                const coursesContainer = document.getElementById("courses-container");
+                const coursesContainer = document.getElementById("home-courses-container");
 
                 if (data.length > 0) {
                     data.forEach(course => {
@@ -25,14 +10,18 @@ document.addEventListener("DOMContentLoaded", function () {
                         courseElement.classList.add("col-lg-3", "col-md-6", "wow", "fadeInUp");
                         courseElement.setAttribute("data-wow-delay", "0.1s");
 
+                        const trimmedName = course.name.length > 20
+                        ? course.name.substring(0, 20) + "..."
+                        : course.name;
+
                         courseElement.innerHTML = `
                             <div class="course-item shadow">
                                 <div class="position-relative overflow-hidden text-light image">
-                                    <img class="img-fluid" src="https://ayyubxon.pythonanywhere.com${course.image}" alt="${course.name}">
+                                    <img class="img-fluid" src="${course.image}" alt="${course.name}">
                                 </div>
                                 <div class="p-2 pb-0">
                                     <h5 class="mb-1">
-                                        <a href="single.html?id=${course.id}" class="text-dark">${course.name}</a>
+                                        <a href="single.html?id=${course.id}" class="text-dark">${trimmedName}</a>
                                     </h5>
                                 </div>
                                 <div class="d-flex">
@@ -43,7 +32,6 @@ document.addEventListener("DOMContentLoaded", function () {
                                 </div>
                             </div>
                         `;
-
                         coursesContainer.appendChild(courseElement);
                     });
                 } else {
@@ -51,7 +39,4 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             })
             .catch(error => console.error("Xatolik:", error));
-    } else {
-        console.log("Fan ID mavjud emas.");
-    }
-});
+    });
