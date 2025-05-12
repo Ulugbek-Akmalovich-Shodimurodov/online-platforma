@@ -6,7 +6,7 @@
     <meta name="google-translate-customization" content="9f841e7780177523-3214ceb76f765f38-gc38c6fe6f9d06436-c">
     </meta>
 
-    <title>Secret Coder : Online Courses</title>
+    <title>Fan bo'yicha ma'lumotlar</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -75,35 +75,40 @@
     </div>
     <!-- Spinner End -->
 
-
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <p class="m-0 fw-bold" style="font-size: 25px;"><img src="img/icon.png" alt="" height="50px">Secret<span
-                    style="color: #fb873f;">Coder</span></p>
+            <p class="m-0 fw-bold" style="font-size: 25px;"><img src="img/icon.png" alt="" height="50px">TATU<span
+                    style="color: #fb873f;">Nurafshon</span></p>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="courses.html" class="nav-item nav-link">Courses</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-down m-0">
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-
+                <a href="index.html" class="nav-item nav-link active">Bosh sahifa</a>
+                <!-- <a href="about.html" class="nav-item nav-link">About</a> -->
+                <a href="courses.html" class="nav-item nav-link">Fanlar</a>
+                
+                <!-- Username boshlang‘ich harfi (dinamik) -->
+                <div class="nav-item dropdown" id="user-dropdown" style="display: none;">
+                    <a href="#" class="nav-link dropdown-toggle d-flex align-items-center justify-content-center"
+                       id="userDropdownToggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                             style="width: 35px; height: 35px; font-weight: bold;" id="user-initial">U</div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeIn" aria-labelledby="userDropdownToggle">
+                        <a href="account.html" class="dropdown-item">Mening sahifam</a>
+                        <a href="#" class="dropdown-item" id="logout-link" title="Logout">
+                            Chiqish <i class="fa fa-sign-out-alt"></i>
+                        </a>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                <a href="login.html" class="nav-item nav-link"><i class="fa fa-user"></i></a>
-                <a href="#" class="nav-item nav-link">
-
-                <div id="google_translate_element">
-                </div>
+                
+                <!-- Fallback icon -->
+                <a href="login.html" class="nav-item nav-link" id="login-link">
+                    <i class="fa fa-user"></i>
+                </a>                
 
 
                 </a>
@@ -131,16 +136,13 @@
     </div>
     <!-- Header End -->
 
-
 <!-- Course Detail Start -->
 <div class="container-xxl py-2">
     <div class="container">
         <div class="row">
             <div class="col-lg-9 wow fadeInUp">
-
                 <div class="container">
                     <div class="row g-5 justify-content-center">
-
                         <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.3s">
                             <h2>Fan nomi</h2>
                             <div class="d-flex">
@@ -153,46 +155,13 @@
                         </div>
                     </div>
                 </div>
-
-
-
                 <div class="container-fluid wow fadeInUp mt-5 tabs">
-
-
                     <!-- Tab panes -->
                     <div class="tab-content mt-4">
-
                         <div class="tab-pane container active" id="Overview">
                             <h2>Fan haqida qisqacha ma'lumot</h2>
                             <p>Fan haqida qisqacha ma'lumot...</p>
                         </div>
-
-                        <div class="container" id="Curriculum">
-
-                            <h2 class="mt-4">
-                                Fan mavzulari
-                            </h2>
-                            <div class="accordion accordion-flush" id="accordionFlushExample">
-                                <div class="accordion-item">
-                                  <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                        Elements and Structure
-                                    
-                                    </button>
-                                  </h2>
-                                  <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body"><ul>
-                                        <li><i class="fa fa-video text-danger"></i> Introduction to HTML</li>
-                                        <li><i class="fa fa-video text-danger"></i> HTMl Document Standards</li>
-                                    </ul></div>
-                                  </div>
-                                </div>
-                            </div>
-
-
-
-                        </div>
-
                         <div class="container" id="Instructor">
                             <h2 class="mt-4">Fan o'qituvchisi haqida</h2>
                             <div class="image-div text-left mt-4">
@@ -206,7 +175,7 @@
                                         <div class="row">
                                             <div class="col-6">
                                                 <p><i class="fas fa-briefcase"></i>
-                                                    Ish joyi</p>
+                                                Ish joyi</p>
                                             </div>
                                             <div class="col-6">
                                                 <p><i class="fa fa-star"></i>
@@ -215,20 +184,15 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="des mt-4 mb-5">
                                     O'qituvchi haqida...
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
-
                 </div>
-
             </div>
             <div class="col-lg-3 col-md-6 shadow wow fadeInUp" data-wow-delay="0.3s">
-
                 <div class="image text-center">
                     <img class="img-fluid mt-2" src="img/course-1.jpg" alt="" height="200px" width="500px">
                 </div>
@@ -259,14 +223,12 @@
                         <i class="fa fa-share"></i><a href=""> Share this Course</a>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </div>
-
 </div>
 <!-- Course Detail End -->
+
 <!-- amaliyotlar -->
 <style>
     .course-item {
@@ -319,62 +281,61 @@
         <div class="row g-4 py-2">
             <div id="courses-container" class="row"></div>
         </div>
-
     </div>
 </div>
 <!-- Courses End -->
 
 <!-- Footer Start -->
-<div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-    <div class="container py-5">
-        <div class="row g-5">
-            <div class="col-lg-4 col-md-6">
-                <h4 class="text-white mb-3">Quick Link</h4>
-                <p><a class="text-light" href="about.html">About Us</a></p>
-                <p><a class="text-light" href="contact.html">Contact Us</a></p>
-                <p><a class="text-light" href="">Privacy Policy</a></p>
-                <p><a class="text-light" href="">Terms & Condition</a></p>
-                <p><a class="text-light" href="">FAQs & Help</a></p>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <h4 class="text-white mb-3">Contact</h4>
-                <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, Bangalore, Karnataka</p>
-                <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 8683045908</p>
-                <p class="mb-2"><i class="fa fa-envelope me-3"></i>secretcoder@gmail.com</p>
-                <div class="d-flex pt-2">
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                    <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="text-white mb-3">Tezkor havola</h4>
+                    <p><a class="text-light" href="index.html">Bosh sahifa</a></p>
+                    <p><a class="text-light" href="courses.html">Fanlar</a></p>
+                    <p><a class="text-light" href="login.html">Tizimga kirish</a></p>
+                    <p><a class="text-light" href="#">Yordam</a></p>
                 </div>
-            </div>
+                <div class="col-lg-4 col-md-6">
+                    <h4 class="text-white mb-3">Kontakt</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>TATU Nurafshon, Yangiobod ko'chasi</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+998 93 717 77 39</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+998 91 798 77 07</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>ulugbekshodimurodov200212@gmail.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href="https://x.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
 
-            <div class="col-lg-4 col-md-6">
-                <h4 class="text-white mb-3">Subscribe to our Newsletter</h4>
-                <p>Subscribe now and join our growing community of learners committed to lifelong education! </p>
-                <div class="position-relative mx-auto" style="max-width: 400px;">
-                    <form action="#">
-                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email"
-                            placeholder="Your email" required>
-                        <button type="submit"
-                            class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"><a
-                                href="mailto:keertidvcorai@gmail.com">Subscribe</a></button>
-                    </form>
+                <!-- <div class="col-lg-4 col-md-6">
+                    <h4 class="text-white mb-3">Subscribe to our Newsletter</h4>
+                    <p>Subscribe now and join our growing community of learners committed to lifelong education! </p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <form action="#">
+                            <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email"
+                                placeholder="Your email" required>
+                            <button type="submit"
+                                class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2"><a
+                                    href="mailto:keertidvcorai@gmail.com">Subscribe</a></button>
+                        </form>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="index.html">Onlayn platforma</a>, Barcha huquqlar himoya qilinadi.
+
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="copyright">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    &copy; <a class="border-bottom" href="index.html">Secret Coder</a>, All Right Reserved.
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- Footer End -->
 
 <!-- Back to Top -->
@@ -392,5 +353,4 @@
 <script src="js/main.js"></script>
 <script src="./js/single.js"></script>
 </body>
-
 </html>

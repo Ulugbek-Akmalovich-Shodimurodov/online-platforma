@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Secret Coder : Login</title>
+    <title>Kirish</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -47,30 +47,41 @@
 
 
     <!-- Navbar Start -->
-    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <p class="m-0 fw-bold" style="font-size: 25px;"><img src="img/icon.png" alt="" height="50px">Secret<span style="color: #fb873f;">Coder</span></p> 
+            <p class="m-0 fw-bold" style="font-size: 25px;"><img src="img/icon.png" alt="" height="50px">TATU<span
+                    style="color: #fb873f;">Nurafshon</span></p>
         </a>
-        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-            style="border: none;">
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto p-4 p-lg-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="about.html" class="nav-item nav-link">About</a>
-                <a href="courses.html" class="nav-item nav-link">Courses</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
-                    <div class="dropdown-menu fade-down m-0">
-                        <a href="team.html" class="dropdown-item">Our Team</a>
-                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>
+                <a href="index.html" class="nav-item nav-link active">Bosh sahifa</a>
+                <!-- <a href="about.html" class="nav-item nav-link">About</a> -->
+                <a href="courses.html" class="nav-item nav-link">Fanlar</a>
+                
+                <!-- Username boshlang‘ich harfi (dinamik) -->
+                <div class="nav-item dropdown" id="user-dropdown" style="display: none;">
+                    <a href="#" class="nav-link dropdown-toggle d-flex align-items-center justify-content-center"
+                       id="userDropdownToggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                             style="width: 35px; height: 35px; font-weight: bold;" id="user-initial">U</div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeIn" aria-labelledby="userDropdownToggle">
+                        <a href="account.html" class="dropdown-item">Mening sahifam</a>
+                        <a href="#" class="dropdown-item" id="logout-link" title="Logout">
+                            Chiqish <i class="fa fa-sign-out-alt"></i>
+                        </a>
                     </div>
                 </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
-                <a href="login.html" class="nav-item nav-link"><i class="fa fa-user"></i></a>
-                <a href="#" class="nav-item nav-link">
-                    <div id="google_translate_element"></div>
+                
+                <!-- Fallback icon -->
+                <a href="login.html" class="nav-item nav-link" id="login-link">
+                    <i class="fa fa-user"></i>
+                </a>                
+
+
                 </a>
             </div>
         </div>
@@ -82,11 +93,11 @@
             <div class="container py-5">
                 <div class="row justify-content-center">
                     <div class="col-lg-10 text-center">
-                        <h1 class="display-3 text-white animated slideInDown">Login</h1>
+                        <h1 class="display-3 text-white animated slideInDown">Tizimga kirish</h1>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a class="text-white" href="index.html">Home</a></li>
-                                <li class="breadcrumb-item text-white active" aria-current="page">Login</li>
+                                <li class="breadcrumb-item"><a class="text-white" href="index.html">Bosh sahifa</a></li>
+                                <li class="breadcrumb-item text-white active" aria-current="page">Kirish</li>
                             </ol>
                         </nav>
                     </div>
@@ -105,7 +116,7 @@
                 <center>
                     <form class="shadow p-4" style="max-width: 550px;" id="login-form">
                         <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-                            <h1 class="mb-5 bg-white text-center px-3">Login</h1>
+                            <h1 class="mb-5 bg-white text-center px-3">Kirish</h1>
             
                         </div>
                         <div class="row g-3">
@@ -123,15 +134,15 @@
                             </div>
 
                             <div class="col-12">
-                                <p><a href="#">Forgot password?</a></p>
+                                <p><a href="#">Parolni unutdim.</a></p>
                             </div>
                             
                             <div class="col-12">
-                                <button class="btn text-light w-100 py-3" type="submit">Login</button>
+                                <button class="btn text-light w-100 py-3" type="submit">Tizimga kirish</button>
                             </div>
 
                             <div class="col-12 text-center">
-                                <p>Don't have an account? <a class="text-decoration-none" href="signup.html">Signup</a></p>
+                                <p>Hisobotingiz yo'qmi? <a class="text-decoration-none" href="signup.html">Ro'yxatdan o'tish</a></p>
                             </div>
                         </div>
                     </form>
@@ -149,27 +160,27 @@
         <div class="container py-5">
             <div class="row g-5">
                 <div class="col-lg-4 col-md-6">
-                    <h4 class="text-white mb-3">Quick Link</h4>
-                    <p><a class="text-light" href="about.html">About Us</a></p>
-                    <p><a class="text-light" href="contact.html">Contact Us</a></p>
-                    <p><a class="text-light" href="">Privacy Policy</a></p>
-                    <p><a class="text-light" href="">Terms & Condition</a></p>
-                    <p><a class="text-light" href="">FAQs & Help</a></p>
+                    <h4 class="text-white mb-3">Tezkor havola</h4>
+                    <p><a class="text-light" href="index.html">Bosh sahifa</a></p>
+                    <p><a class="text-light" href="courses.html">Fanlar</a></p>
+                    <p><a class="text-light" href="login.html">Tizimga kirish</a></p>
+                    <p><a class="text-light" href="#">Yordam</a></p>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <h4 class="text-white mb-3">Contact</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, Bangalore, Karnataka</p>
-                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 8683045908</p>
-                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>secretcoder@gmail.com</p>
+                    <h4 class="text-white mb-3">Kontakt</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>TATU Nurafshon, Yangiobod ko'chasi</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+998 93 717 77 39</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+998 91 798 77 07</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>ulugbekshodimurodov200212@gmail.com</p>
                     <div class="d-flex pt-2">
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://x.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://youtube.com" target="_blank"><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
 
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                     <h4 class="text-white mb-3">Subscribe to our Newsletter</h4>
                     <p>Subscribe now and join our growing community of learners committed to lifelong education! </p>
                     <div class="position-relative mx-auto" style="max-width: 400px;">
@@ -181,14 +192,14 @@
                                     href="mailto:keertidvcorai@gmail.com">Subscribe</a></button>
                         </form>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="container">
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="index.html">Secret Coder</a>, All Right Reserved.
+                        &copy; <a class="border-bottom" href="index.html">Onlayn platforma</a>, Barcha huquqlar himoya qilinadi.
 
                     </div>
                 </div>
@@ -214,5 +225,4 @@
     <script src="js/main.js"></script>
     <script src="./js/login.js"></script>
 </body>
-
 </html>

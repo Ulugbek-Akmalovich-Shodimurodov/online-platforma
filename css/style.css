@@ -5,6 +5,23 @@
     --light: #f0e4de;
     --dark: #181d38;
 }
+       
+/* Nusxalashni bloklash */
+        
+body {        
+    -webkit-user-select: none; /* Chrome, Safari, Opera */        
+    -moz-user-select: none;    /* Firefox */        
+    -ms-user-select: none;     /* Internet Explorer/Edge */     
+    user-select: none;         /* Standart */
+       
+}
+
+        
+/* Ekran rasmini olishni kamaytirish uchun */
+       
+* {
+    /* pointer-events: none; */
+}
 
 .btn {
     background-color: #fb873f;

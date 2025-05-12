@@ -131,8 +131,10 @@
         }
     });
 
-
-
+        // Nusxalashni cheklash uchun javascript kodini qo'shish mumkin
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
 
 
 

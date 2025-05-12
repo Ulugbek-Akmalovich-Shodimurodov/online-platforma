@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Axborot xavfsizligi protokollari</title>
+  <title>Amaliyot</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="">
   <meta name="description" content="">
@@ -73,22 +73,45 @@
   <!-- Spinner End -->
 
   <!-- Navbar Start -->
-  <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
-    <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-      <p class="m-0 fw-bold" style="font-size: 25px;">
-        <img src="img/TATU-01.png" alt="" height="50">TATU <span style="color: #fb873f;">Nurafshon</span>
-      </p>
-    </a>
-    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <div class="navbar-nav ms-auto p-4 p-lg-0">
-        <a href="index.html" class="nav-item nav-link">Bosh sahifa</a>
-        <a href="courses.html" class="nav-item nav-link">Amaliyot mashg'ulotlari</a>
-      </div>
-    </div>
-  </nav>
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+            <p class="m-0 fw-bold" style="font-size: 25px;"><img src="img/icon.png" alt="" height="50px">TATU<span
+                    style="color: #fb873f;">Nurafshon</span></p>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link active">Bosh sahifa</a>
+                <!-- <a href="about.html" class="nav-item nav-link">About</a> -->
+                <a href="courses.html" class="nav-item nav-link">Fanlar</a>
+                
+                <!-- Username boshlang‘ich harfi (dinamik) -->
+                <div class="nav-item dropdown" id="user-dropdown" style="display: none;">
+                    <a href="#" class="nav-link dropdown-toggle d-flex align-items-center justify-content-center"
+                       id="userDropdownToggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="rounded-circle bg-primary text-white d-flex align-items-center justify-content-center"
+                             style="width: 35px; height: 35px; font-weight: bold;" id="user-initial">U</div>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-end animate__animated animate__fadeIn" aria-labelledby="userDropdownToggle">
+                        <a href="account.html" class="dropdown-item">Mening sahifam</a>
+                        <a href="#" class="dropdown-item" id="logout-link" title="Logout">
+                            Chiqish <i class="fa fa-sign-out-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Fallback icon -->
+                <a href="login.html" class="nav-item nav-link" id="login-link">
+                    <i class="fa fa-user"></i>
+                </a>                
+
+
+                </a>
+            </div>
+        </div>
+    </nav>
   <!-- Navbar End -->
 
   <!-- Header Start -->
