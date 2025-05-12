@@ -173,6 +173,137 @@
             color: red;
         }
     </style>
+<style>
+  body {
+    padding: 20px;
+  }
+
+  .code-runner {
+    display: flex;
+    gap: 20px;
+    font-family: monospace;
+  }
+
+  .code-editor {
+    background: #2d2d3f;
+    padding: 15px;
+    border-radius: 8px;
+    width: 60%;
+  }
+
+  .output-area {
+    background: #2d2d3f;
+    padding: 15px;
+    border-radius: 8px;
+    width: 35%;
+  }
+
+  textarea, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #1e1e2f;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 4px;
+  }
+
+  button {
+    background-color: #28a745;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+
+  button:hover {
+    background-color: #218838;
+  }
+
+  h3 {
+    margin-top: 20px;
+  }
+
+  /* 🔽 Media query for small screens (phones & small tablets) */
+  @media (max-width: 768px) {
+    .code-runner {
+      flex-direction: column;
+    }
+
+    .code-editor,
+    .output-area {
+      width: 100%;
+    }
+  }
+</style>
+
+  <h2>Code Runner</h2>
+  <div class="code-runner">
+    <div class="code-editor">
+      <select id="language" onchange="updateVersion()">
+        <option value="python">Python</option>
+        <option value="cpp">C++</option>
+        <option value="java">Java</option>
+      </select>
+      <select id="version"></select>
+
+      <textarea id="codeInput" rows="15">
+print("hello")
+      </textarea>
+      <button onclick="compileCode()">Run Code</button>
+    </div>
+    <div class="output-area">
+      <h3>Input</h3>
+      <textarea id="inputData" rows="5">4</textarea>
+
+      <h3>Output</h3>
+      <textarea id="outputArea" rows="5" readonly></textarea>
+    </div>
+  </div>
+
+  <script>
+    const versions = {
+      python: ["3.10.0", "3.9.0"],
+      cpp: ["11", "17"],
+      java: ["15", "17"]
+    };
+
+    function updateVersion() {
+      const lang = document.getElementById("language").value;
+      const versionSelect = document.getElementById("version");
+      versionSelect.innerHTML = "";
+      versions[lang].forEach(v => {
+        const opt = document.createElement("option");
+        opt.value = v;
+        opt.textContent = v;
+        versionSelect.appendChild(opt);
+      });
+    }
+
+    updateVersion();
+
+    async function compileCode() {
+      const lang = document.getElementById("language").value;
+      const version = document.getElementById("version").value;
+      const code = document.getElementById("codeInput").value;
+      const input = document.getElementById("inputData").value;
+
+      const response = await fetch("https://ayyubxon.pythonanywhere.com//api/compile/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          language: lang,
+          version: version,
+          code: code,
+          stdin: input
+        })
+      });
+
+      const data = await response.json();
+      document.getElementById("outputArea").textContent = data.run.output || data.run.stderr || "No output";
+    }
+  </script>
 
      <!-- Test Start -->
   <section class="py-5">
